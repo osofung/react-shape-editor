@@ -67,9 +67,9 @@ body,
   overflow: hidden;
 }
 
-/* ── Editor body (toolbar + canvas) ─────────────────────────────────────────── */
+/* ── Editor body (canvas fills the whole space) ─────────────────────────────── */
 .editor-body {
-  display: flex;
+  position: relative;
   flex: 1;
   overflow: hidden;
   min-height: 0;
@@ -77,8 +77,11 @@ body,
 
 /* ── Canvas wrap ─────────────────────────────────────────────────────────────── */
 .canvas-wrap {
-  position: relative;
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: var(--color-canvas-bg);
   /* Subtle dot-grid pattern on the outer canvas area */
@@ -107,15 +110,22 @@ body,
   filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.5));
 }
 
-/* ── Property bar ────────────────────────────────────────────────────────────── */
+/* ── Property bar (Floating) ─────────────────────────────────────────────────── */
 .property-bar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   display: flex;
   align-items: center;
   gap: 4px;
   height: var(--property-bar-height);
   padding: 0 12px;
   background: var(--color-surface);
-  border-bottom: 1px solid var(--color-shell-border);
+  border: 1px solid var(--color-shell-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   flex-shrink: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -240,8 +250,13 @@ body,
   color: #fff;
 }
 
-/* ── Toolbar ─────────────────────────────────────────────────────────────────── */
+/* ── Toolbar (Floating) ───────────────────────────────────────────────────────── */
 .toolbar {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,7 +264,9 @@ body,
   width: var(--toolbar-width);
   padding: 12px 6px;
   background: var(--color-surface);
-  border-right: 1px solid var(--color-shell-border);
+  border: 1px solid var(--color-shell-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   flex-shrink: 0;
   overflow-y: auto;
   overflow-x: hidden;

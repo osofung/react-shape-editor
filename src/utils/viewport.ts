@@ -116,6 +116,23 @@ export function panViewport(viewport: Viewport, dx: number, dy: number): Viewpor
   };
 }
 
+/**
+ * Compute the offsets required to center the logical canvas (CANVAS_WIDTH x CANVAS_HEIGHT)
+ * within a container of size (containerW x containerH) at a given scale.
+ */
+export function centerCanvas(
+  containerW: number,
+  containerH: number,
+  canvasW: number,
+  canvasH: number,
+  scale: number,
+): { offsetX: number; offsetY: number } {
+  return {
+    offsetX: (containerW - canvasW * scale) / 2,
+    offsetY: (containerH - canvasH * scale) / 2,
+  };
+}
+
 // ─── Display helpers ──────────────────────────────────────────────────────────
 
 /**

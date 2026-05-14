@@ -113,7 +113,7 @@ export const DEFAULT_TEXT_PROPS = {
 } as const;
 
 export const DEFAULT_VIEWPORT: Viewport = {
-  scale: 1,
+  scale: 0.8, // Start slightly smaller
   offsetX: 0,
   offsetY: 0,
 };

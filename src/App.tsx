@@ -31,6 +31,8 @@ import { useCanvasInteractions } from './hooks/useCanvasInteractions';
 import { useViewport }           from './hooks/useViewport';
 
 import type { Shape } from './types/shapes';
+import { CANVAS_WIDTH, CANVAS_HEIGHT } from './types/shapes';
+import { centerCanvas } from './utils/viewport';
 
 import './App.css';
 
@@ -44,7 +46,6 @@ const App: React.FC = () => {
     selectedId,
     activeTool,
     previewShape,
-    isDragging,
     setActiveTool,
     updateShape,
     deleteShape,
@@ -67,6 +68,7 @@ const App: React.FC = () => {
     zoomInStep,
     zoomOutStep,
     resetZoomLevel,
+    setViewport,
   } = useViewport();
 
   // ── Container ref for zoom button sizing ──────────────────────────────────
@@ -89,6 +91,28 @@ const App: React.FC = () => {
     const { w, h } = getContainerSize();
     zoomOutStep(w, h);
   }, [zoomOutStep, getContainerSize]);
+
+  // ── Keyboard shortcuts ─────────────────────────────────────────────────────
+
+  // ── Initial centering ──────────────────────────────────────────────────────
+
+  useEffect(() => {
+    const el = canvasWrapRef.current;
+    if (!el) return;
+
+    const { clientWidth, clientHeight } = el;
+    const { offsetX, offsetY } = centerCanvas(
+      clientWidth,
+      clientHeight,
+      CANVAS_WIDTH,
+      CANVAS_HEIGHT,
+      viewport.scale
+    );
+
+    setViewport(prev => ({ ...prev, offsetX, offsetY }));
+    // Only run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // ── Keyboard shortcuts ─────────────────────────────────────────────────────
 
@@ -120,22 +144,22 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      {/* ── Top property bar ──────────────────────────────────────────── */}
-      <PropertyBar
-        selectedShape={selectedShape}
-        onUpdate={updateShape}
-        onBringForward={bringForwardSelected}
-        onSendBackward={sendBackwardSelected}
-        onDelete={() => selectedId && deleteShape(selectedId)}
-        onDuplicate={() => selectedId && duplicateShape(selectedId)}
-      />
-
       {/* ── Main editor area ──────────────────────────────────────────── */}
       <div className="editor-body">
-        {/* Left toolbar */}
+        {/* Floating Top property bar */}
+        <PropertyBar
+          selectedShape={selectedShape}
+          onUpdate={updateShape}
+          onBringForward={bringForwardSelected}
+          onSendBackward={sendBackwardSelected}
+          onDelete={() => selectedId && deleteShape(selectedId)}
+          onDuplicate={() => selectedId && duplicateShape(selectedId)}
+        />
+
+        {/* Floating Left toolbar */}
         <Toolbar activeTool={activeTool} onSelectTool={setActiveTool} />
 
-        {/* Canvas wrapper — fills remaining space */}
+        {/* Canvas wrapper — fills the whole background */}
         <div className="canvas-wrap" ref={canvasWrapRef}>
           <Canvas
             shapes={shapes}
