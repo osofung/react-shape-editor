@@ -1,17 +1,24 @@
 # React Shape Editor
 
-React Shape Editor is a lightweight browser-based micro design tool built with React and TypeScript. The application allows users to create and manipulate simple graphic objects on a canvas through editor-like interactions such as selection, movement, resizing, rotation, and styling [file:25].
+React Shape Editor is a lightweight browser-based micro design tool built with React and TypeScript. It allows users to create and manipulate simple graphic objects on a canvas through interactions such as selection, movement, resizing, rotation, and styling.
+
+This project was developed as part of a technical exercise for a React-based UI editing tool. During the planning stage, Perplexity was used for brainstorming, requirement clarification, and drafting the Product Requirements Document (PRD). Manus AI was then used to support implementation and development. Final scope decisions, review of generated output, integration, and manual verification of behavior were carried out throughout the project.
+
+## Project Documents
+
+- [Product Requirements Document (PRD)](./docs/react-shape-editor-prd.pdf)
+- [Technical Report](./REPORT.md)
 
 ## Project Overview
 
-This project was developed as part of a technical exercise requiring a React web interface for editing on-screen graphic elements. The objective was to deliver a focused and polished micro design tool with clean component structure, predictable state handling, and realistic scope rather than an overextended feature set [file:25].
+The objective of this project is to deliver a focused micro design tool that demonstrates editor-like behavior in a browser environment. The implementation emphasizes clean React structure, predictable state handling, practical interaction design, and realistic scope control rather than attempting to replicate the full feature set of professional design software.
 
 ## Prerequisites
 
 Before running the project, ensure the following are installed:
 
 - Node.js 18 or above
-- A package manager: `pnpm`, `npm`, or `yarn`
+- A package manager such as pnpm, npm, or yarn
 
 ## Installation and Local Development
 
@@ -29,12 +36,12 @@ Before running the project, ensure the following are installed:
    pnpm install
    ```
 
-   Or using npm:
+   Using npm:
    ```bash
    npm install
    ```
 
-   Or using yarn:
+   Using yarn:
    ```bash
    yarn install
    ```
@@ -46,12 +53,12 @@ Before running the project, ensure the following are installed:
    pnpm dev
    ```
 
-   Or using npm:
+   Using npm:
    ```bash
    npm run dev
    ```
 
-   Or using yarn:
+   Using yarn:
    ```bash
    yarn dev
    ```
@@ -114,34 +121,6 @@ yarn preview
 - Navigation: Pan using the middle mouse button and zoom using the mouse wheel or zoom controls.
 - Layer control: Move selected objects forward or backward in the visual stacking order.
 
-## Problem Statement
-
-The goal of the project was to build a small but functional React-based editing interface for simple graphic objects. The submission was intended to demonstrate editor-like behavior, clear UI structure, and sound implementation judgment while remaining within the scope of a short exercise [file:25].
-
-## Methodology
-
-The application is structured around a modular frontend architecture:
-
-- React components are separated by responsibility, such as layout, canvas rendering, toolbar actions, and property editing.
-- Shape data is managed through a centralized object model to support consistent editing behavior.
-- Utility functions handle geometry-related operations such as coordinate conversion, object transformation, and selection logic.
-- The user interface follows a dark editor-style layout with a central canvas and fixed control regions.
-
-## Evaluation Methods
-
-The project was evaluated primarily through manual functional testing in a desktop browser environment. The following behaviors were checked during implementation:
-
-- Shape creation through drag interaction
-- Selection priority when objects overlap
-- Movement, resizing, and rotation behavior
-- Property editing synchronization with selected objects
-- Panning and zooming behavior on the canvas
-- General visual consistency and interaction feedback
-
-## Experimental Results
-
-The resulting implementation provides a stable micro design tool that supports direct manipulation of basic canvas objects. The final scope prioritizes reliable core interactions and maintainable structure over broader but incomplete feature coverage, in line with the intended exercise requirements [file:25].
-
 ## Known Issues
 
 - Text measurement may vary slightly depending on browser rendering behavior.
@@ -151,4 +130,8 @@ The resulting implementation provides a stable micro design tool that supports d
 
 ## AI Usage Disclosure
 
-This project was developed with assistance from AI coding tools for ideation, scaffolding, debugging support, and reviewing implementation approaches [file:25]. Core application structure, scope decisions, integration logic, and manual verification of interaction behavior were reviewed and refined directly during development to ensure the final submission remained understandable and defensible [file:25].
+This project was developed with the assistance of AI tools as part of the exercise workflow.
+
+- Perplexity was used during the planning stage for brainstorming, requirement clarification, and drafting the PRD.
+- Manus AI was used during implementation to assist with scaffolding, debugging, and development support.
+- Final architecture decisions, code review, integration, and manual verification of core interactions were completed during development to ensure the submitted implementation remained understandable, consistent, and aligned with the intended scope.
